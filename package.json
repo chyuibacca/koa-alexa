@@ -1,0 +1,32 @@
+{
+  "name": "koa-alexa",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "mocha test --timeout 5000",
+    "test-cover": "node_modules/nyc/bin/nyc.js node_modules/mocha/bin/mocha test --timeout 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:chyuibacca/koa-alexa.git"
+  },
+  "author": "Chyuibacca",
+  "homepage": "https://github.com/chyuibacca/koa-alexa",
+  "license": "MIT",
+  "keywords": [
+    "koa",
+    "alexa"
+  ],
+  "dependencies": {
+    "alexa-verifier": "^2.0.1",
+    "ask-sdk-core": "^2.0.5",
+    "ask-sdk-model": "^1.3.1",
+    "debug": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "http-assert": "^1.3.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "rewire": "^4.0.1"
+  }
+}
