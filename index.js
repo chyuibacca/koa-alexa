@@ -5,7 +5,7 @@
  * (https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html#verifying-that-the-request-was-sent-by-alexa)
  * before being passed to a custom ASK Skill implementation.
  */
-const debug = require('debug')('koa:application');
+const debug = require('debug')('koa:alexa');
 let Alexa = require('ask-sdk-core');
 let verifier = require('alexa-verifier');
 
@@ -46,16 +46,16 @@ function generateAlexaRequestHandler(options={}) {
         /* Handle the validated request and return the response */
         let event = ctx.request.body;
         let context = {};
-        console.log(`Handling validated skill request: ${JSON.stringify({headers: ctx.header, event: event, context: context})}`);
+        debug(`Handling validated skill request: ${JSON.stringify({headers: ctx.header, event: event, context: context})}`);
         try {
             //Call the skill and return the response
             let skillResponse = await skill.invoke(event, context)
-            console.log(`Returing response to skill: ${JSON.stringify(skillResponse)}`);
+            debug(`Returing response to skill: ${JSON.stringify(skillResponse)}`);
             ctx.response.status = 200; ctx.response.type = 'text/json';
             ctx.response.body = skillResponse;
         } catch(err) {
             //Format and return the error
-            console.log(`${err.name||'Error'} handling skill: ${err.message || JSON.stringify(err)}`);
+            debug(`${err.name||'Error'} handling skill: ${err.message || JSON.stringify(err)}`);
             ctx.response.status = 500; ctx.response.type = 'text/json'
             ctx.response.body = err.message;
         };
